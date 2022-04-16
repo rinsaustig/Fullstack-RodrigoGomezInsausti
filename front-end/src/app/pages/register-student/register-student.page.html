@@ -1,0 +1,104 @@
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Square+Peg&display=swap" rel="stylesheet">
+
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <div class="back-circle"></div>
+    <ion-title class="ion-text-center custom-font">Registrar estudiante</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+
+
+  <svg class="back-blob" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#7fff00"
+      d="M68.6,-33.5C81.6,-17.2,79.6,13.8,65.7,37.6C51.8,61.3,25.9,77.8,2.1,76.6C-21.7,75.4,-43.5,56.5,-54.2,34.6C-65,12.7,-64.8,-12.3,-53.9,-27.4C-43,-42.4,-21.5,-47.6,3.2,-49.4C27.9,-51.2,55.7,-49.7,68.6,-33.5Z"
+      transform="translate(100 100)" />
+  </svg>
+
+  <div class="ion-padding">
+
+    <form #userPost="ngForm" class="ion-padding" [formGroup]="formData" (ngSubmit)="onSubmit(userPost.value)">
+
+
+      <label class="ion-text-center custom-font label">Nombre de estudiante</label>
+      <div class="wrap-input">
+        <input formControlName="student" class="input" type="text" name="student" placeholder="Nombre de estudiante">
+      </div>
+      <label class="ion-text-center custom-font label">Fecha de nacimiento</label>
+      <div class="wrap-input">
+        <input formControlName="birthday" class="input dates" type="date" name="birthday">
+      </div>
+      <label class="ion-text-center custom-font label">Nombre del padre</label>
+      <div class="wrap-input">
+        <input formControlName="father" class="input" type="text" name="father" placeholder="Nombre del padre">
+      </div>
+      <label class="ion-text-center custom-font label">Nombre de la madre</label>
+      <div class="wrap-input">
+        <input formControlName="mother" class="input" type="text" name="mother" placeholder="Nombre de la madre">
+      </div>
+      <label class="ion-text-center custom-font label">Curso</label>
+      <ion-item class="wrap-input" color="#622d87">
+        <ion-label class="label" color="my-color">Seleccionar</ion-label>
+        <ion-select formControlName="degree" color="my-color" multiple="true" cancelText="Cancelar" okText="Aceptar">
+          <ion-select-option value=1>1</ion-select-option>
+          <ion-select-option value=2>2</ion-select-option>
+          <ion-select-option value=3>3</ion-select-option>
+          <ion-select-option value=4>4</ion-select-option>
+          <ion-select-option value=5>5</ion-select-option>
+          <ion-select-option value=6>6</ion-select-option>
+
+        </ion-select>
+      </ion-item>
+      <label class="ion-text-center custom-font label">Sección</label>
+      <ion-item class="wrap-input" color="#622d87">
+        <ion-label class="label" color="my-color">Seleccionar</ion-label>
+        <ion-select formControlName="section" color="my-color" multiple="true" cancelText="Cancelar" okText="Aceptar">
+          <ion-select-option value="A">A</ion-select-option>
+          <ion-select-option value="B">B</ion-select-option>
+          <ion-select-option value="C">C</ion-select-option>
+          <ion-select-option value="D">D</ion-select-option>
+          <ion-select-option value="E">E</ion-select-option>
+          <ion-select-option value="F">F</ion-select-option>
+
+        </ion-select>
+      </ion-item>
+
+      <label class="ion-text-center custom-font label">Fecha de inscripción</label>
+      <div class="wrap-input">
+        <input formControlName="inscription" class="input dates" type="date" name="inscription">
+      </div>
+
+
+
+      <div class="flex-row">
+        <div class="container-form-btn">
+          <button class="learn-more" type="submit">
+            <span class="circle" aria-hidden="true">
+              <span class="icon arrow"></span>
+            </span>
+            <span class="button-text">Registrar</span>
+          </button>
+        </div>
+      </div>
+      
+      
+    </form>
+    <div class="flex-row ion-padding">
+      <div class="container-form-btn">
+        <button class="learn-more" (click)="studentTables()">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">Ver Cursos</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+
+</ion-content>

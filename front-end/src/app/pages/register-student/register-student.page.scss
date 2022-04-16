@@ -1,0 +1,219 @@
+.custom-font {
+    font-family: "Josefin Sans", sans-serif;
+    color: #720f5e;
+}
+
+ion-toolbar {
+    --background: transparent;
+    overflow: hidden;
+
+    ion-title {
+        padding: 20px 0 46px 0;
+        font-weight: 900;
+    }
+
+    p {
+        padding: 40px 0 20px 0;
+        font-weight: 600;
+    }
+
+    .back-circle {
+        z-index: -1;
+        width: 340px;
+        height: 200px;
+        background:#7fff00;
+        position: absolute;
+        border-radius: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+ion-content {
+    
+    --background: 	#720f5e;
+
+    .back-blob {
+        z-index: -1;
+        width: 600px;
+        position: absolute;
+        left: -50%;
+        top: 0;
+    }
+
+    form {
+        margin-top: 100px;
+    }
+
+    .wrap-input {
+        background-color: 	#622d87;
+        border-radius: 20px;
+        margin-bottom: 26px;
+        box-shadow: 0 10px 30px 0px rgba(57, 71, 82, 0.12);
+    }
+
+    .input {
+        display: block;
+        width: 100%;
+        background: transparent;
+        font-family: Josefin Sans;
+        font-size: 16px;
+        line-height: 1.2;
+        border: none;
+        border-radius: 20px;
+        outline: none;
+        height: 46px;
+        padding: 0 20px 0 23px;
+    }
+
+    .container-form-btn {
+        display: flex;
+        justify-content: center;
+    }
+
+    .form-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 20px;
+        min-width: 160px;
+        height: 42px;
+        background-color: #394752;
+        border-radius: 20px;
+        font-size: 14px;
+        color: #ffffff;
+        text-transform: uppercase;
+        padding-top: 5px;
+        transition: all 0.4s;
+        box-shadow: 0 10px 30px 0px rgba(57, 71, 82, 0.5);
+    }
+    .label{
+        margin-left: 1em;
+        color: #ffffff; 
+    }
+
+    .form-btn:hover {
+        background-color: #28333b;
+        box-shadow: 0 10px 30px 0px rgba(57, 71, 82, 0.8);
+    }
+
+   
+}
+
+
+button {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+button.learn-more {
+    width: 12rem;
+    height: auto;
+}
+
+button.learn-more .circle {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: relative;
+    display: block;
+    margin: 0;
+    width: 3rem;
+    height: 3rem;
+    background: #7fff00;;
+    border-radius: 1.625rem;
+}
+
+button.learn-more .circle .icon {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: #fff;
+}
+
+button.learn-more .circle .icon.arrow {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    left: 0.625rem;
+    width: 1.125rem;
+    height: 0.125rem;
+    background: none;
+}
+
+button.learn-more .circle .icon.arrow::before {
+    position: absolute;
+    content: "";
+    top: -0.29rem;
+    right: 0.0625rem;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-top: 0.125rem solid #fff;
+    border-right: 0.125rem solid #fff;
+    transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.15rem 0;
+    margin: 0 0 0 1.85rem;
+    color: #7fff00;;
+    font-family: 'Square Peg', cursive;
+    font-weight: 700;
+    line-height: 1.6;
+    font-size: 1.5em;
+    text-align: center;
+    
+}
+
+button:hover .circle {
+    width: 100%;
+}
+
+button:hover .circle .icon.arrow {
+    background: #fff;
+    transform: translate(1rem, 0);
+}
+
+button:hover .button-text {
+    color: #fff;
+}
+
+ion-list {
+    display: block;
+    width: 100%;
+    background: transparent;
+    font-family: Josefin Sans;
+    font-size: 16px;
+    line-height: 1.2;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    height: 46px;
+    padding: 0 20px 0 23px;
+}
+
+.dates {
+    color: #ffffff
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
