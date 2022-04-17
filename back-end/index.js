@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 
 app.use('/students', studentRoutes);
 
-mongoose.connect(process.env.MONGODB , {useUnifiedTopology: true, useNewUrlParser: true})
+mongoose.connect(process.env.MONGODB , {useUnifiedTopology: true})
 .then(()=> {
     app.listen(port, () => {
         console.log('Server is running on port: ' + port)

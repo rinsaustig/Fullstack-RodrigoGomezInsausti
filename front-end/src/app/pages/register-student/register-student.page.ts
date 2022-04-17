@@ -53,7 +53,7 @@ export class RegisterStudentPage implements OnInit {
           birthday: data.birthday,
           father: data.father,
           mother: data.mother,
-          degree: parseInt(data.degree[0]),
+          degree: data.degree[0],
           section: data.section[0],
           inscription: data.inscription
         };

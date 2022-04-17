@@ -12,8 +12,10 @@ router.get('/', (req, res) => {
 })
 
 router.post('/register', async (req, res) => {
+    const email = "work@tuchance.net"
+    const password = "tuchance.net"
     try {
-        const hashedPassword = await bcryptjs.hash(req.body.password, 8)
+        const hashedPassword = await bcryptjs.hash(password, 8)
         if (await studentExists(req.body.student)) {
             res.status(409).json({ error: 'Estudiante ya registrado' })
         } else {
@@ -25,7 +27,7 @@ router.post('/register', async (req, res) => {
                 degree: req.body.degree,
                 section: req.body.section,
                 inscription: req.body.inscription,
-                email: req.body.email,
+                email: email,
                 password: hashedPassword
             })
             newStudent.save().then(student => {
