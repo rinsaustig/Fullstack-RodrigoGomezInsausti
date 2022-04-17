@@ -14,8 +14,6 @@ router.get('/', (req, res) => {
 router.post('/register', async (req, res) => {
     try {
         const hashedPassword = await bcryptjs.hash(req.body.password, 8)
-        console.log(salt)
-        console.log(hashedPassword)
         if (await studentExists(req.body.student)) {
             res.status(409).json({ error: 'Estudiante ya registrado' })
         } else {
