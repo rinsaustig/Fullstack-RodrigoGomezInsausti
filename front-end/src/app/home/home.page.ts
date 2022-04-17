@@ -24,4 +24,9 @@ export class HomePage {
   studentsTables() {
     this.router.navigateByUrl('/students-tables');
   }
+
+  logOut() {
+    localStorage.removeItem('user');
+    this.router.navigateByUrl('/login', { replaceUrl: true });
+  }
 }

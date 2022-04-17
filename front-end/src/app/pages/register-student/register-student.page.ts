@@ -73,5 +73,8 @@ export class RegisterStudentPage implements OnInit {
   studentTables() {
     this.router.navigateByUrl('students-tables', {replaceUrl: true})
   }
+  home() {
+    this.router.navigateByUrl('home')
+  }
 
 }

@@ -1,5 +1,7 @@
 const router = require('express').Router();
+const jwt = require('jsonwebtoken')
 const Student = require('../models/student');
+const bcryptjs = require('bcryptjs')
 
 router.get('/', (req, res) => {
     Student.find().then(students => {
@@ -10,21 +12,46 @@ router.get('/', (req, res) => {
 })
 
 router.post('/register', async (req, res) => {
-    if (await studentExists(req.body.student)) {
-        res.status(409).json({ error: 'Estudiante ya registrado' })
-    } else {
-        const newStudent = new Student(req.body)
-        newStudent.save().then(student => {
-            res.status(200).json(student)
-        }).catch(err => {
-            res.status(500).json({ error: err.message })
-        })
-    }
-});
+    try {
+        const hashedPassword = await bcryptjs.hash(req.body.password, 8)
+        console.log(salt)
+        console.log(hashedPassword)
+        if (await studentExists(req.body.student)) {
+            res.status(409).json({ error: 'Estudiante ya registrado' })
+        } else {
+            const newStudent = new Student({
+                student: req.body.student,
+                birthday: req.body.birthday,
+                father: req.body.father,
+                mother: req.body.mother,
+                degree: req.body.degree,
+                section: req.body.section,
+                inscription: req.body.inscription,
+                email: req.body.email,
+                password: hashedPassword
+            })
+            newStudent.save().then(student => {
+                res.status(200).json(student)
+            })
+        }
+    } catch (err) {
+        res.status(500).json({ error: err.message })
+    } 
+}) 
 
-router.post('/login', (req, res) => {
-    Student.findOne({ email: req.body.email, password: req.body.password }).then(student => {
-            if(student) {
+
+
+
+
+router.post('/login', async (req, res) => {
+    console.log(req.body)
+    const email = req.body.email;
+    const password = req.body.password;
+    const passHash = await bcryptjs.hash(password, 8)
+    console.log(passHash)
+    Student.findOne({ email: req.body.email}).then(student => {
+            let compare = bcryptjs.compare(passHash, student.password)
+            if (compare) {
                 res.status(200).json(student);
             } else {
                 res.status(401).json({ error: 'Correo o contraseña incorrectos' });

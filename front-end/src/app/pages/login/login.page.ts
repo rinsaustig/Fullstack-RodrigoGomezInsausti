@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -28,7 +29,8 @@ export class LoginPage implements OnInit {
       localStorage.setItem('user', JSON.stringify(res));
       this.router.navigateByUrl('', {replaceUrl: true})
     }, error =>{
-      alert('Usuario o contraseña incorrecto/s')
+      console.log(error);
+      alert(error.error.error)
     });
 
   }

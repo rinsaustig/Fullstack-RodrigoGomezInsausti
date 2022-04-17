@@ -29,6 +29,10 @@ export class StudentsTablesPage implements OnInit {
     )
   }
 
+  home() {
+    this.router.navigateByUrl('home')
+  }
+
   filterStudents() {
     {
       this.studentsFiltered = this.students.filter(student => {

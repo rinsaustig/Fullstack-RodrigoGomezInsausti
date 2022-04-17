@@ -12,12 +12,14 @@ app.use(cors());
 app.use(express.json())
 
 app.get('/', (req, res) => {
-    res.send('Helou guorld')
+    res.json({ 
+        mensaje: 'NodeJs & JWT'
+    })
 })
 
 app.use('/students', studentRoutes);
 
-mongoose.connect(process.env.MONGODB , {useUnifiedTopology: true})
+mongoose.connect(process.env.MONGODB , {useUnifiedTopology: true, useNewUrlParser: true})
 .then(()=> {
     app.listen(port, () => {
         console.log('Server is running on port: ' + port)

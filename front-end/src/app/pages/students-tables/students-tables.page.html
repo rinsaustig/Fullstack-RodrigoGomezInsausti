@@ -13,16 +13,30 @@
 <ion-content fullscreen="true">
 
 
-  <svg class="back-blob" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <path fill="#7fff00"
-      d="M68.6,-33.5C81.6,-17.2,79.6,13.8,65.7,37.6C51.8,61.3,25.9,77.8,2.1,76.6C-21.7,75.4,-43.5,56.5,-54.2,34.6C-65,12.7,-64.8,-12.3,-53.9,-27.4C-43,-42.4,-21.5,-47.6,3.2,-49.4C27.9,-51.2,55.7,-49.7,68.6,-33.5Z"
-      transform="translate(100 100)" />
-  </svg>
-
   <div class="ion-padding">
+    <div class="ion-padding">
+      <div class="container-form-btn">
+        <button class="learn-more" (click)="newStudent()">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">Cargar estudiante</span>
+        </button>
+      </div>
+      <div class="flex-row ion-padding">
+        <div class="container-form-btn">
+          <button class="learn-more" (click)="home()">
+            <span class="circle" aria-hidden="true">
+              <span class="icon arrow"></span>
+            </span>
+            <span class="button-text">Inicio</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <ion-item class="wrap-input" color="#622d87">
-      <ion-label class="ion-text-center custom-font label" color="my-color">Seleccionar grado</ion-label>
-      <ion-select [(ngModel)]="degree" (click)="getStudents()" (ionChange)="filterStudents()" color="my-color" multiple="false"
+      <ion-select [(ngModel)]="degree" placeholder="Seleccionar grado" (click)="getStudents()" (ionChange)="filterStudents()" color="my-color" multiple="false"
         cancelText="Cancelar" okText="Aceptar">
         <ion-select-option value=1>1</ion-select-option>
         <ion-select-option value=2>2</ion-select-option>
@@ -35,34 +49,26 @@
     </ion-item>
     <ion-item class="wrap-input" *ngIf="studentsFiltered != undefined">
       <div class="back-circle"></div>
-      <ion-title class="ion-text-center custom-font label mr">Estudiantes por grados</ion-title>
+      <ion-title class="input-label mr">Estudiantes por grados</ion-title>
     </ion-item>
     <ion-list *ngIf="studentsFiltered != undefined" class="wrap-input">
       <ion-item class="wrap-input" color="#622d87" >
-        <ion-label class="ion-text-center custom-font label">
+        <ion-label class="input-label black">
           Nombre</ion-label>
-        <ion-label class="ion-text-center custom-font label">
+        <ion-label class="input-label black">
           Grado</ion-label>
-        <ion-label class="ion-text-center custom-font label">
+        <ion-label class="input-label black">
           Sección</ion-label>
         </ion-item>
       <ion-item class="wrap-input" *ngFor="let student of studentsFiltered">
-        <ion-label class="ion-text-center custom-font label">
+        <ion-label class="input-label">
           {{student.student}}</ion-label>
-        <ion-label class="ion-text-center custom-font label">
+        <ion-label class="input-label">
           {{student.degree}}</ion-label>
-        <ion-label class="ion-text-center custom-font label">
+        <ion-label class="input-label">
           {{student.section}}</ion-label>
         </ion-item>
     </ion-list>
-    <div class="container-form-btn">
-      <button class="learn-more" (click)="newStudent()">
-        <span class="circle" aria-hidden="true">
-          <span class="icon arrow"></span>
-        </span>
-        <span class="button-text">Cargar estudiante</span>
-      </button>
-    </div>
 
 
 
