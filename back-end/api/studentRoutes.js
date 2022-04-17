@@ -44,12 +44,9 @@ router.post('/register', async (req, res) => {
 
 
 router.post('/login', async (req, res) => {
-    console.log(req.body)
-    const email = req.body.email;
     const password = req.body.password;
     const passHash = await bcryptjs.hash(password, 8)
-    console.log(passHash)
-    Student.findOne({ email: req.body.email}).then(student => {
+    Student.findOne({ email: req.body.email }).then(student => {
             let compare = bcryptjs.compare(passHash, student.password)
             if (compare) {
                 res.status(200).json(student);
