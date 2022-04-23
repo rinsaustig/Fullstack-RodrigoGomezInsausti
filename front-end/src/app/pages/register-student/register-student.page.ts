@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-register-student',
   templateUrl: './register-student.page.html',
   styleUrls: ['./register-student.page.scss'],
 })
 export class RegisterStudentPage implements OnInit {
-
+  url = environment.url.register;
   student: string;
   birthday: Date;
   father: string;
@@ -57,7 +57,7 @@ export class RegisterStudentPage implements OnInit {
           section: data.section[0],
           inscription: data.inscription
         };
-      this.http.post('http://localhost:3000/students/register', student)
+      this.http.post(this.url, student)
       .subscribe(res =>{
         alert('Estudiante creado con exito')
         this.router.navigateByUrl('students-tables', {replaceUrl: true})

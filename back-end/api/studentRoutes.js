@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const jwt = require('jsonwebtoken')
 const Student = require('../models/student');
 const bcryptjs = require('bcryptjs')
 
@@ -12,10 +11,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/register', async (req, res) => {
-    const email = "work@tuchance.net"
-    const password = "tuchance.net"
     try {
-        const hashedPassword = await bcryptjs.hash(password, 8)
         if (await studentExists(req.body.student)) {
             res.status(409).json({ error: 'Estudiante ya registrado' })
         } else {
@@ -27,8 +23,6 @@ router.post('/register', async (req, res) => {
                 degree: req.body.degree,
                 section: req.body.section,
                 inscription: req.body.inscription,
-                email: email,
-                password: hashedPassword
             })
             newStudent.save().then(student => {
                 res.status(200).json(student)
@@ -45,9 +39,9 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     const password = req.body.password;
-    const passHash = await bcryptjs.hash(password, 8)
-    Student.findOne({ email: req.body.email }).then(student => {
-            let compare = bcryptjs.compare(passHash, student.password)
+    const hash = await bcryptjs.hashSync(password, 8)
+    Student.findOne({ email: req.body.email }).then(async student => {
+            let compare = await bcryptjs.compare(password, student.password)
             if (compare) {
                 res.status(200).json(student);
             } else {

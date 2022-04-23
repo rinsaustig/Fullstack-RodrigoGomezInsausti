@@ -1,7 +1,7 @@
+import { environment } from './../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-login',
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
+  url = environment.url.login;
   email: string;
   password: string;
 
@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
       password: this.password
     };
 
-    this.http.post('http://localhost:3000/students/login', credentials)
+    this.http.post(this.url, credentials)
     .subscribe(res =>{
       localStorage.setItem('user', JSON.stringify(res));
       this.router.navigateByUrl('', {replaceUrl: true})
