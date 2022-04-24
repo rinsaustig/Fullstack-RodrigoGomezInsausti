@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -26,6 +26,7 @@ export class RegisterStudentPage implements OnInit {
   ngOnInit() {
 
 
+
     this.formData = new FormGroup({
       student: new FormControl(),
       birthday: new FormControl(),
@@ -36,11 +37,11 @@ export class RegisterStudentPage implements OnInit {
       inscription: new FormControl()
     })
   }
-  
-  
+
+
   onSubmit(data) {
-    
-    if(
+
+    if (
       this.formData.value.student != null
       && this.formData.value.birthday != null
       && this.formData.value.father != null
@@ -48,22 +49,26 @@ export class RegisterStudentPage implements OnInit {
       && this.formData.value.degree != null
       && this.formData.value.section != null
       && this.formData.value.inscription != null) {
-        let student = {
-          student: data.student,
-          birthday: data.birthday,
-          father: data.father,
-          mother: data.mother,
-          degree: data.degree[0],
-          section: data.section[0],
-          inscription: data.inscription
-        };
-      this.http.post(this.url, student)
-      .subscribe(res =>{
-        alert('Estudiante creado con exito')
-        this.router.navigateByUrl('students-tables', {replaceUrl: true})
-      }, error =>{
-        alert('Estudiante ya existente')
-      });
+      let student = {
+        student: data.student,
+        birthday: data.birthday,
+        father: data.father,
+        mother: data.mother,
+        degree: data.degree[0],
+        section: data.section[0],
+        inscription: data.inscription
+      };
+      let httpHeaders: HttpHeaders = new HttpHeaders();
+      const token = localStorage.getItem('token');
+      httpHeaders = httpHeaders.append('Authorization', token);
+
+      this.http.post(this.url, student, { headers: httpHeaders })
+        .subscribe(res => {
+          alert('Estudiante creado con exito')
+          this.router.navigateByUrl('students-tables', { replaceUrl: true })
+        }, error => {
+          alert('Estudiante ya existente')
+        });
     } else {
       alert('Complete todos los campos del formulario')
     }
@@ -71,7 +76,7 @@ export class RegisterStudentPage implements OnInit {
   }
 
   studentTables() {
-    this.router.navigateByUrl('students-tables', {replaceUrl: true})
+    this.router.navigateByUrl('students-tables', { replaceUrl: true })
   }
   home() {
     this.router.navigateByUrl('home')

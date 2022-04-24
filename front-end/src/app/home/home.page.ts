@@ -11,7 +11,7 @@ export class HomePage {
   constructor(private router: Router) { };
 
   ngOnInit(): void {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem('token');
     if (user == null) {
       this.router.navigateByUrl('/login', { replaceUrl: true });
     }
