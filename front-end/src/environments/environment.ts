@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   url : {
     login: "http://localhost:3000/students/login",
-    register: "http://localhost:3000/students/register"
+    register: "http://localhost:3000/students/register",
+    students: "http://localhost:3000/students/",
 }
 };
 

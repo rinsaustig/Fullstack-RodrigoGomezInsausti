@@ -1,5 +1,6 @@
+import { environment } from './../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./students-tables.page.scss'],
 })
 export class StudentsTablesPage implements OnInit {
+  url = environment.url.students;
   students: any;
   studentsFiltered: any;
   degree: any;
@@ -17,13 +19,15 @@ export class StudentsTablesPage implements OnInit {
     this.getStudents()
   }
 
+
+
   newStudent() {
     this.router.navigateByUrl('register-student')
 
   }
 
   getStudents() {
-    this.http.get('http://localhost:3000/students/').subscribe(data => {
+    this.http.get(this.url).subscribe(data => {
       this.students = data;
     }
     )

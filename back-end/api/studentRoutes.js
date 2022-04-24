@@ -6,19 +6,18 @@ const express = require('express');
 const verification = express.Router()
 
 verification.use((req, res, next) => {
-    let token = req.headers['authorization'];
-    console.log(req.headers, token)
-    if(!token) {
-        req.status(401).send({ error: 'No tienes autorización' })
+    let token = JSON.parse(req.headers['authorization']);
+    if (!token) {
+        res.status(401).send({ error: 'Necesitas autorización' })
     }
-    if(token.startsWith('Bearer ')) {
+    if (token.startsWith('Bearer ')) {
         token = token.slice(7, token.length)
     }
-    if(token) {
-        jwt.verify(token, process.env.key, (error, decoded) => {
-            if(error) {
+    if (token) {
+        jwt.verify(token, process.env.KEY, (error, decoded) => {
+            if (error) {
                 return res.json({
-                    message: "No tienes autorización"
+                    message: error 
                 })
             } else {
                 req.decoded = decoded
@@ -57,8 +56,8 @@ router.post('/register', verification, async (req, res) => {
         }
     } catch (err) {
         res.status(500).json({ error: err.message })
-    } 
-}) 
+    }
+})
 
 
 
@@ -68,19 +67,19 @@ router.post('/login', async (req, res) => {
     const password = req.body.password;
     const hash = await bcryptjs.hashSync(password, 8)
     Student.findOne({ email: req.body.email }).then(async student => {
-            let compare = await bcryptjs.compare(password, student.password)
-            if (compare) {
-                const payload = {
-                    check: true
-                }
-                const token = jwt.sign(payload, process.env.KEY, {
-                    expiresIn: '7d'
-                })
-                res.status(200).json(token);
-            
-            } else {
-                res.status(401).json({ error: 'Correo o contraseña incorrectos' });
+        let compare = await bcryptjs.compare(password, student.password)
+        if (compare) {
+            const payload = {
+                check: true
             }
+            const token = jwt.sign(payload, process.env.KEY, {
+                expiresIn: '7d'
+            })
+            res.status(200).json(token);
+
+        } else {
+            res.status(401).json({ error: 'Correo o contraseña incorrectos' });
+        }
     }).catch(err => {
         res.status(500).json({ error: err.message })
     });
